@@ -10,7 +10,6 @@ class Solution:
                 return nums[slow]
             
             if (fast + 2) + 1 >= len(nums):
-                print(fast)
                 fast = len(nums) % fast
                 
             if slow + 1 == len(nums):

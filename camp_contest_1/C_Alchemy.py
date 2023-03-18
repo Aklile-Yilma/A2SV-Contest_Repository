@@ -11,7 +11,6 @@ while curr_sum <= total and left != right:
     ingredients[right] -= 1  
     curr_sum += 2
 
-    # print(ingredients, left, right)
     if ingredients[right] == 0 and ingredients[left] == 0 and abs(right - left) == 2: 
         left += 1
         continue
@@ -27,8 +26,6 @@ while curr_sum <= total and left != right:
 edward = left + 1
 alphonso = n - left - 1
        
-# if curr_sum_left == curr_sum_right:
-#     edward += 1
 
 print(edward, alphonso)
 
