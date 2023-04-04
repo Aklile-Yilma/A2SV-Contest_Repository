@@ -11,7 +11,6 @@ def cyclicsort(nums):
     
         #cyclic sort
     for ptr in range(len(nums)):
-        curr = nums[ptr]
         while nums[ptr] != ptr + 1:
             print(nums)
             correct_pos = nums[ptr] - 1
