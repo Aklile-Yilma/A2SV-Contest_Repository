@@ -1,3 +1,4 @@
+
 import sys, threading
 
 
@@ -47,8 +48,8 @@ def main():
         
     
 
-sys.setrecursionlimit(1 << 30)
-threading.stack_size(1 << 27)
+sys.setrecursionlimit(3000)
+
 
 main_thread = threading.Thread(target=main)
 main_thread.start()
