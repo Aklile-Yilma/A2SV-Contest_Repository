@@ -1,39 +1,40 @@
-from collections import defaultdict
-from collections import deque
-n, m = list(map(int, input().split()))
-coins = list(map(int, input().split()))
-
-graph = defaultdict(list)
+from collections import defaultdict, deque
+ 
+ 
+n, m = map(int, input().split())
+ 
+nums = list(map(int, input().split()))
+adj = defaultdict(list)
+seen = set()
+ 
 for _ in range(m):
-    u, v = list(map(int, input().split()))
-    graph[u].append(v)
-    graph[v].append(u)
-    
-def bfs(root):
+    a, b = map(int, input().split())
+    adj[a].append(b)
+    adj[b].append(a)
+ 
+ 
+def bfs(num):
     q = deque()
-    q.append(root)
-    visited= {root}
-    total = coins[root-1]
-    
+    min_price = nums[num-1]
+    q.append(num)
+ 
     while q:
-        node = q.popleft()
-        
-        for child in graph[node]:
-            if child not in visited:
-                visited.add(child)
-                q.append(child)
-                
-    for idx in range(len(coins)):
-        if (idx + 1) not in visited:
-            total += coins[idx]
-            
-    return total
-                
-coin_spent = sum(coins)
-print(graph)
-for node in graph:
-    coin_spent = min(coin_spent, bfs(node))
-    
-    
-print(coin_spent)
-    
+        val = q.popleft()
+        seen.add(val)
+ 
+        for ad in adj[val]:
+            if ad not in seen:
+                q.append(ad)
+            seen.add(ad)
+            min_price = min(min_price, nums[ad-1])
+ 
+    return min_price
+ 
+ 
+total = 0
+ 
+for i in range(1, n+1):
+    if i not in seen:
+        total += bfs(i)
+ 
+print(total)
